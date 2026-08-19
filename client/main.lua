@@ -1,6 +1,4 @@
-function RunMain()
-    print('Start UI Setup')
-    UIAPI.Setup()
-end
-
-RunMain()
+-- Nothing to bootstrap -- client/services/hud.lua registers its net events
+-- and NUI callback at load time on its own. Kept as an empty file only to
+-- match the rest of the framework's load-order convention (every resource
+-- ends its client_scripts with a main.lua).
