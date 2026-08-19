@@ -11,11 +11,14 @@ UIState = false
 -- Shows/hides the HUD, sending it a fresh snapshot of the active character,
 -- XP config, PVP state, and locale strings each time it opens.
 function UIAPI.ToggleUI()
+    print('ToggleUI Called')
     ActiveCharacter = Feather.RPC.CallAsync("GetCharacter", {})
     if ActiveCharacter == nil or ActiveCharacter == {} then
         print("No active character found")
         return
     end
+
+    print('Character is active. Open UI')
 
     UIState = not UIState
     SendNUIMessage({
@@ -34,10 +37,11 @@ RegisterNUICallback('updatestate', function(args, nuicb)
     UIState = args.state
     SetNuiFocus(UIState, UIState)
     nuicb('ok')
+    print('Menu Close')
 end)
 
 RegisterNUICallback('updatelocale', function(args, nuicb)
-    ActiveCharacter = Feather.RPC.CallAsync("UpdatePlayerLang", args.locale, function()end)
+    ActiveCharacter = Feather.RPC.CallAsync("UpdatePlayerLang", args.locale, function() end)
     -- (CORE-17) Keep LocalesAPI's client-side language cache in sync
     -- immediately instead of leaving it stale until the next spawn. Synced
     -- from the server's response (what it actually persisted) rather than
@@ -56,10 +60,12 @@ end)
 
 function UIAPI.Setup()
     Feather.Command.Register(Config.UI.command, Config.UI.suggestion, function()
+        print('Menu Command Issued')
         UIAPI.ToggleUI()
     end)
 
     Feather.Keys:RegisterListener(Config.UI.hotkey, function()
+        print('Page Up Pressed')
         UIAPI.ToggleUI()
     end)
 end

@@ -6,7 +6,7 @@ lua54 'yes'
 name 'feather-hud'
 description 'The player HUD for the Feather Framework'
 author 'Feather @Bytesizd'
-version '0.1.1'
+version '0.1.2'
 
 github_version_check 'true'
 github_version_type 'release'
@@ -24,7 +24,7 @@ client_scripts {
 }
 
 ui_page {
-    'ui/dist/index.html'
+    'ui/index.html'
 }
 
 files {
