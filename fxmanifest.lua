@@ -6,7 +6,7 @@ lua54 'yes'
 name 'feather-hud'
 description 'The player HUD for the Feather Framework'
 author 'Feather @Bytesizd'
-version '0.1.3'
+version '0.1.4'
 
 github_version_check 'true'
 github_version_type 'release'

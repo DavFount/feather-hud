@@ -15,6 +15,7 @@ export const useResourceStripStore = defineStore('resourceStrip', {
         visible: false,
         anchor: 'bottom-right',
         padding: 26,
+        topPadding: 56,
         scale: 1.0,
         scrim: true
     }),

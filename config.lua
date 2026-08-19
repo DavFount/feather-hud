@@ -18,8 +18,12 @@ HudPosition = {
 }
 
 Config.ResourceStrip = {
-    anchor  = HudPosition.TopRight, -- Where the strip appears. Must be one of the HudPosition.* values above.
-    padding = 26,                   -- Distance in pixels from the screen edge the strip is anchored to.
-    scale   = 1.0,                  -- Uniform size multiplier -- 1.0 is normal size, 1.2 is 20% bigger, 0.8 is 20% smaller.
-    scrim   = true                  -- Soft dark backdrop behind the text so it stays readable over bright backgrounds. Set to false to disable it.
+    anchor     = HudPosition.TopRight, -- Where the strip appears. Must be one of the HudPosition.* values above.
+    padding    = 26,                   -- Distance in pixels from the screen edge the strip is anchored to (left/right/bottom).
+    topPadding = 56,                   -- Same, but for the TOP edge only -- taller by default because RedM draws its own
+                                        -- server name/tag text in the top-right corner, which plain `padding` isn't tall
+                                        -- enough to clear. Only matters for the Top* HudPosition values. Raise this if the
+                                        -- strip still overlaps that text on your resolution/UI scale.
+    scale      = 1.2,                  -- Uniform size multiplier -- 1.0 is normal size, 1.2 is 20% bigger, 0.8 is 20% smaller.
+    scrim      = true                  -- Soft dark backdrop behind the text so it stays readable over bright backgrounds. Set to false to disable it.
 }

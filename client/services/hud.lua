@@ -69,6 +69,7 @@ local function getValidatedConfig()
     return {
         anchor = anchor,
         padding = tonumber(Config.ResourceStrip.padding) or 26,
+        topPadding = tonumber(Config.ResourceStrip.topPadding) or 56,
         scale = tonumber(Config.ResourceStrip.scale) or 1.0,
         scrim = Config.ResourceStrip.scrim ~= false
     }

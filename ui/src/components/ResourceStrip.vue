@@ -55,7 +55,14 @@ const scrimGradient = computed(() => {
 const rootStyle = computed(() => ({
   alignItems: alignItems.value,
   justifyContent: justifyContent.value,
-  padding: `${store.padding}px`
+  // RedM draws its own connection/server-tag text in the top-right corner
+  // that padding alone (26px by default) doesn't clear -- top-anchored
+  // positions get their own, taller clearance (topPadding) instead of
+  // reusing the regular edge padding.
+  paddingTop: `${anchorParts.value.v === 'top' ? store.topPadding : store.padding}px`,
+  paddingBottom: `${store.padding}px`,
+  paddingLeft: `${store.padding}px`,
+  paddingRight: `${store.padding}px`
 }));
 
 const columnStyle = computed(() => {
@@ -175,7 +182,12 @@ const tokensDisplay = computed(() => Math.floor(store.tokens ?? 0));
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(214, 192, 152, 0.6);
+  color: rgba(214, 192, 152, 0.88);
+  /* Small text at low opacity washes out over bright backgrounds (sky,
+     snow) even with the row's shared shadow -- a tighter, darker shadow
+     of its own gives it a crisp edge instead of relying on that soft
+     12px blur alone. */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 1), 0 0 3px rgba(0, 0, 0, 0.95);
 }
 
 .rs-xp-track {
